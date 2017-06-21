@@ -174,7 +174,8 @@ private extension MoyaProvider {
             if let parameters = target.parameters {
                 parameters
                     .flatMap { tuple in multipartQueryComponents(tuple.key, tuple.value) }
-                    .forEach { key, value in
+                    .forEach { tuple in
+						let (key, value) = tuple
                         if let data = value.data(using: .utf8, allowLossyConversion: false) {
                             form.append(data, withName: key)
                         }
